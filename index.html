@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>特种油开发公司支部书记“码”上宝典</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "Heiti SC", sans-serif;
+        }
+        body {
+            background-color: #F5F5F5;
+            color: #333333;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        /* 顶部导航栏 */
+        .header {
+            background-color: #C62828;
+            color: #FFFFFF;
+            padding: 16px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .header-logo {
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        /* 搜索框样式 */
+        .search-box {
+            margin: 76px 15px 15px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 1px solid #E0E0E0;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+        }
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666666'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 0 0 9.5 3 6.5 6.5 0 0 0 3 9.5 6.5 6.5 0 0 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        /* 板块入口样式 */
+        .module-list {
+            padding: 0 15px 80px;
+        }
+        .module-item {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 20px 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .module-info {
+            display: flex;
+            align-items: center;
+        }
+        .module-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon1 {
+            background-color: #FFEBEE;
+        }
+        .icon2 {
+            background-color: #E3F2FD;
+        }
+        .icon3 {
+            background-color: #E8F5E9;
+        }
+        .icon4 {
+            background-color: #FFF8E1;
+        }
+        .module-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        .module-name {
+            font-size: 17px;
+            font-weight: 500;
+            color: #333333;
+        }
+        .module-desc {
+            font-size: 13px;
+            color: #666666;
+            margin-top: 3px;
+        }
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999999'%3E%3Cpath d='M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        /* 3级详情页样式 */
+        .detail-header {
+            padding: 86px 15px 15px;
+            background-color: #FFFFFF;
+        }
+        .detail-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #C62828;
+            margin-bottom: 10px;
+        }
+        .detail-breadcrumb {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 15px;
+        }
+        .detail-content {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 20px 15px;
+            margin: 0 15px 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .content-section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 12px;
+            padding-left: 8px;
+            border-left: 3px solid #C62828;
+        }
+        .term {
+            color: #C62828;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            cursor: pointer;
+        }
+        .term-desc {
+            margin: 8px 0 15px;
+            padding: 10px 15px;
+            background-color: #FFEBEE;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .process-list {
+            margin: 10px 0;
+        }
+        .process-step {
+            display: flex;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .process-step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            bottom: -15px;
+            width: 1px;
+            background-color: #E0E0E0;
+        }
+        .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #C62828;
+            color: #FFFFFF;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .step-content {
+            flex: 1;
+        }
+        .step-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .step-desc {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.6;
+        }
+        .pitfall {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background-color: #FFF3E0;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #E65100;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #C62828;
+            color: #FFFFFF;
+            border-radius: 20px;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .btn:active {
+            background-color: #B71C1C;
+        }
+        /* 弹窗样式 */
+        .popup-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+            align-items: flex-end;
+        }
+        .popup-content {
+            background-color: #FFFFFF;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            padding: 20px 15px;
+            width: 100%;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .popup-title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #333333;
+        }
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 24px;
+            height: 24px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666666'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'/%3E%3C/svg%3E");
+            background-size: cover;
+            cursor: pointer;
+        }
+        /* 底部导航 */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 90;
+        }
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999999;
+            font-size: 12px;
+        }
+        .tab-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+        }
+        .tab-item.active {
+            color: #C62828;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="header">
+        <div class="header-logo"></div>
+        <div class="header-title">特种油开发公司支部书记“码”上宝典</div>
+        <div></div>
+    </div>
+
+    <!-- 搜索框 -->
+    <div class="search-box">
+        <div class="search-icon"></div>
+        <input type="text" class="search-input" placeholder="搜索责任、名词、流程关键词">
+    </div>
+
+    <!-- 板块入口列表（1级首页） -->
+    <div class="module-list">
+        <!-- 通用指南模块 -->
+        <div class="module-item" onclick="goToModule('general-guide')">
+            <div class="module-info">
+                <div class="module-icon icon1">
+                    <svg viewBox="0 0 24 24" fill="#C62828">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="module-name">通用指南</div>
+                    <div class="module-desc">31项责任拆解，含操作流程、材料模板</div>
+                </div>
+            </div>
+            <div class="arrow-icon"></div>
+        </div>
+
+        <!-- 案例索引模块 -->
+        <div class="module-item" onclick="goToModule('case-index')">
+            <div class="module-info">
+                <div class="module-icon icon2">
+                    <svg viewBox="0 0 24 24" fill="#1976D2">
+                        <path d="M18 4H6v2l6.5 6L6 18v2h12v-3h-7l5-5-5-5h7V4z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="module-name">案例索引</div>
+                    <div class="module-desc">典型经验+避坑指南，扫码看溯源原文</div>
+                </div>
+            </div>
+            <div class="arrow-icon"></div>
+        </div>
+
+        <!-- 周期导航模块 -->
+        <div class="module-item" onclick="goToModule('cycle-nav')">
+            <div class="module-info">
+                <div class="module-icon icon3">
+                    <svg viewBox="0 0 24 24" fill="#388E3C">
+                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="module-name">周期导航</div>
+                    <div class="module-desc">年度日历、季度重点、应急响应指引</div>
+                </div>
+            </div>
+            <div class="arrow-icon"></div>
+        </div>
+
+        <!-- 互动赋能模块 -->
+        <div class="module-item" onclick="goToModule('interaction')">
+            <div class="module-info">
+                <div class="module-icon icon4">
+                    <svg viewBox="0 0 24 24" fill="#F57C00">
+                        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="module-name">互动赋能</div>
+                    <div class="module-desc">案例征集、帮扶答疑、联盟资源</div>
+                </div>
+            </div>
+            <div class="arrow-icon"></div>
+        </div>
+    </div>
+
+    <!-- 通用指南模块页（2级页面，默认隐藏） -->
+    <div id="general-guide" style="display: none;">
+        <div class="detail-header">
+            <div class="detail-title">通用指南</div>
+            <div class="detail-breadcrumb">首页 > 通用指南</div>
+        </div>
+        <div class="module-list">
+            <div class="module-item" onclick="goToDetail('org-construction')">
+                <div class="module-info">
+                    <div class="module-icon icon1">
+                        <svg viewBox="0 0 24 24" fill="#C62828">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="module-name">1. 抓实基本组织建设</div>
+                        <div class="module-desc">含党建第一责任人职责、支部部署推进等5项内容</div>
+                    </div>
+                </div>
+                <div class="arrow-icon"></div>
+            </div>
+            <!-- 可复制添加其他责任模块 -->
+            <div class="module-item">
+                <div class="module-info">
+                    <div class="module-icon icon1">
+                        <svg viewBox="0 0 24 24" fill="#C62828">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="module-name">2. 抓强基本队伍建设</div>
+                        <div class="module-desc">含党员教育管理、支委队伍建设等6项内容</div>
+                    </div>
+                </div>
+                <div class="arrow-icon"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 内容详情页（3级页面，默认隐藏） -->
+    <div id="org-construction" style="display: none;">
+        <div class="detail-header">
+            <div class="detail-title">抓实基本组织建设 - 履行党建“第一责任人”职责</div>
+            <div class="detail-breadcrumb">首页 > 通用指南 > 抓实基本组织建设</div>
+        </div>
+        <div class="detail-content">
+            <!-- 名词解释模块 -->
+            <div class="content-section">
+                <div class="section-title">1. 名词解释</div>
+                <div>
+                    <p>（1）<span class="term" onclick="showTermPopup('term1')">党建“第一责任人”</span>：指党支部书记作为支部党建工作的核心负责人，对支部党建质量、方向、落实负首要责任，是支部党建工作的“领头人”。您要牵头把党建工作和生产经营安全紧紧绑定，避免党建与生产“两张皮”。</p>
+                    <p>（2）<span class="term" onclick="showTermPopup('term2')">党支部委员会集体领导</span>：支委会是党支部的领导核心，支部工作特别是涉及“六项权力”内容必须经支委会民主讨论、集体决策，不能搞一言堂。</p>
+                    <p>（3）<span class="term" onclick="showTermPopup('term3')">党建工作“一岗双责”</span>：每一位支委成员在履行其业务职责的同时，也必须履行其分管领域内的党建职责，实现“业务管到哪里，党建就覆盖到哪里”。</p>
+                </div>
+            </div>
+
+            <!-- 具体内容模块 -->
+            <div class="content-section">
+                <div class="section-title">2. 具体内容</div>
+                <div class="term-desc">一句话口诀：集体领导定方向，责任分解到支委，一岗双责抓融合，督促检查保落地</div>
+                <p>（1）统筹领导责任：结合公司党委部署和作业区工作安排，制定个人年度责任清单。</p>
+                <p>（2）责任分解机制：将党建任务分解落实到具体支委，明确支委党建职责和融合重点。</p>
+                <p>（3）督促责任落实：定期跟进支委“一岗双责”落实情况，解决支委在推进党建工作中遇到的问题。</p>
+            </div>
+
+            <!-- 操作流程模块 -->
+            <div class="content-section">
+                <div class="section-title">3. 操作流程</div>
+                <div class="process-list">
+                    <div class="process-step">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <div class="step-title">前期准备（1个工作日内）</div>
+                            <div class="step-desc">
+                                步骤1：梳理上级要求。收集公司党委年度《党建工作要点》《党支部书记责任清单》，明确本支部核心任务。<br>
+                                步骤2：摸清支部情况。掌握支委人数、岗位分工 。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <div class="step-title">制定责任分解方案（3个工作日内）</div>
+                            <div class="step-desc">
+                                步骤1：召开支委会（需提前1天通知），集体讨论党建责任分解框架，明确“书记抓总、支委抓块、党员抓点”。<br>
+                                步骤2：细化支委责任。按“支委岗位+党建任务”匹配。<br>
+                                步骤3：形成《党支部党建责任分解方案》《支部书记责任清单》《支部委员一岗双责清单》，明确“任务内容、完成时限、验收标准”。
+                            </div>
+                            <div class="pitfall">避坑提醒：支委会需有完整会议记录，参会人数需达到支委总数的2/3以上 。</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <div class="step-title">督促落实（常态化）</div>
+                            <div class="step-desc">
+                                步骤1：每季度党员大会听取支委“一岗双责”落实汇报，通过查看台账、访谈党员、现场核验，评估支委履职情况。<br>
+                                步骤2：对落实不力的支委，开展谈心谈话，制定帮扶计划 。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-num">4</div>
+                        <div class="step-content">
+                            <div class="step-title">动态调整（每半年1次）</div>
+                            <div class="step-desc">结合公司季度重点工作提示调整责任分解方案与清单内容 。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 材料模板模块 -->
+            <div class="content-section">
+                <div class="section-title">4. 材料模板</div>
+                <p>点击下方按钮下载对应模板，下载后可直接编辑使用</p>
+                <div class="btn" onclick="window.open('https://example.com/模板1链接', '_blank')">《党建责任分解方案（模板）》</div>
+                <div class="btn" onclick="window.open('https://example.com/模板2链接', '_blank')">《支部书记责任清单（模板）》</div>
+                <div class="btn" onclick="window.open('https://example.com/模板3链接', '_blank')">《支部委员一岗双责清单（模板）》</div>
+            </div>
+
+            <!-- 常见问题模块 -->
+            <div class="content-section">
+                <div class="section-title">5. 常见问题</div>
+                <p><strong>问：</strong>支委成员不重视党建“一岗双责”，如何督促？</p>
+                <p><strong>答：</strong>① 召开支委专题会议，重申“一岗双责”要求，明确其党建职责与业务工作的关联；② 将支委党建履职情况纳入年度绩效考核，与评优评先挂钩；③ 针对履职不到位的支委，向上级党组织报备后，进行约谈提醒，限期整改 。</p>
+                <p style="margin-top: 10px;"><strong>问：</strong>上级部署的党建任务与支部业务冲突时，如何协调？</p>
+                <p><strong>答：</strong>① 召开支委会议研究，优先保障党建任务落实（如重要政治学习、组织生活等）；② 与业务工作负责人沟通，将党建任务融入业务工作（如在业务会议中加入党建学习环节）；③ 若确实无法协调，及时向上级党组织说明情况，申请调整任务时限或方式 。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 名词解释弹窗 -->
+    <div class="popup-mask" id="term-popup">
+        <div class="popup-content">
+            <div class="popup-close" onclick="closePopup('term-popup')"></div>
+            <div class="popup-title" id="term-title">党建“第一责任人”</div>
+            <div id="term-content">
+                <p><strong>权威定义：</strong>依据《中国共产党支部工作条例（试行）》《党支部工作标准》，党支部书记作为支部党建工作的核心负责人，对支部党建质量、方向、落实负首要责任，是支部党建工作的“领头人” 。</p>
+                <p style="margin-top: 10px;"><strong>业务关联：</strong>在基层党支部，需牵头把党建工作和生产经营安全紧紧绑定，例如在生产例会中加入党建学习环节，在安全检查时同步检查党建与生产融合落实情况，避免党建与生产“两张皮” 。</p>
+                <p style="margin-top: 10px;"><strong>易错提醒：</strong>党建“第一责任人”不是“唯一责任人”，需在支委会集体领导下开展工作，重要事项需经支委会民主决策，不可擅自决定 。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航 -->
+    <div class="tab-bar">
+        <div class="tab-item active" onclick="goToHome()">
+            <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <div>首页</div>
+        </div>
+        <div class="tab-item" onclick="goToModule('general-guide')">
+            <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+            </svg>
+            <div>指南</div>
+        </div>
+        <div class="tab-item" onclick="goToModule('interaction')">
+            <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+            </svg>
+            <div>互动</div>
+        </div>
+    </div>
+
+    <script>
+        // 页面跳转函数
+        function goToHome() {
+            // 隐藏所有模块页和详情页，显示首页
+            document.querySelectorAll('#general-guide, #case-index, #cycle-nav, #interaction, #org-construction').forEach(el => el.style.display = 'none');
+            document.querySelector('.module-list').style.display = 'block';
+            // 切换底部导航激活状态
+            document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
+            document.querySelector('.tab-item').classList.add('active');
+        }
+
+        function goToModule(moduleId) {
+            // 隐藏首页和其他模块页，显示目标模块页
+            document.querySelector('.module-list').style.display = 'none';
+            document.querySelectorAll('#general-guide, #case-index, #cycle-nav, #interaction, #org-construction').forEach(el => {
+                el.style.display = el.id === moduleId ? 'block' : 'none';
+            });
+            // 切换底部导航激活状态
+            document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-item')[moduleId === 'general-guide' ? 1 : 2].classList.add('active');
+        }
+
+        function goToDetail(detailId) {
+            // 隐藏模块页，显示详情页
+            document.querySelectorAll('#general-guide, #case-index, #cycle-nav, #interaction').forEach(el => el.style.display = 'none');
+            document.getElementById(detailId).style.display = 'block';
+        }
+
+        // 名词解释弹窗函数
+        function showTermPopup(termType) {
+            const popup = document.getElementById('term-popup');
+            const termTitle = document.getElementById('term-title');
+            const termContent = document.getElementById('term-content');
+            // 根据术语类型更新弹窗内容
+            if (termType === 'term1') {
+                termTitle.textContent = '党建“第一责任人”';
+                termContent.innerHTML = `<p><strong>权威定义：</strong>依据《中国共产党支部工作条例（试行）》《党支部工作标准》，党支部书记作为支部党建工作的核心负责人，对支部党建质量、方向、落实负首要责任，是支部党建工作的“领头人” 。</p>
+                <p style="margin-top: 10px;"><strong>业务关联：</strong>在基层党支部，需牵头把党建工作和生产经营安全紧紧绑定，例如在生产例会中加入党建学习环节，在安全检查时同步检查党建与生产融合落实情况，避免党建与生产“两张皮” 。</p>
+                <p style="margin-top: 10px;"><strong>易错提醒：</strong>党建“第一责任人”不是“唯一责任人”，需在支委会集体领导下开展工作，重要事项需经支委会民主决策，不可擅自决定 。</p>`;
+            } else if (termType === 'term2') {
+                termTitle.textContent = '党支部委员会集体领导';
+                termContent.innerHTML = `<p><strong>权威定义：</strong>根据《中国共产党支部工作条例（试行）》，支委会是党支部的领导核心，凡属重大问题都要按照集体领导、民主集中、个别酝酿、会议决定的原则，由支委会集体讨论，作出决定 。</p>
+                <p style="margin-top: 10px;"><strong>业务关联：</strong>在支部工作中，涉及“六项权力”（重大决策、干部管理、项目安排、资金使用、资产处置、对外交往）的内容，必须经支委会民主讨论、集体决策，如支部年度党建计划制定、党员发展名额分配等 。</p>
+                <p style="margin-top: 10px;"><strong>易错提醒：</strong>不可搞“一言堂”，即使书记有明确想法，也需提交支委会讨论表决，参会支委需充分发表意见，表决时实行少数服从多数原则 。</p>`;
+            } else if (termType === 'term3') {
+                termTitle.textContent = '党建工作“一岗双责”';
+                termContent.innerHTML = `<p><strong>权威定义：</strong>依据《辽河油田基层党支部工作实用手册》，“一岗双责”指支委成员既要履行分管业务工作的职责，又要履行分管领域内党建工作的职责，实现业务工作与党建工作同部署、同落实、同检查、同考核 。</p>
+                <p style="margin-top: 10px;"><strong>业务关联：</strong>例如分管生产的支委，在安排生产任务时，需同步部署“党员先锋岗”“党员责任区”创建工作；分管安全的支委，需在安全培训中加入党建引领安全的相关内容 。</p>
+                <p style="margin-top: 10px;"><strong>易错提醒：</strong>不可将党建职责推给书记一人，支委需主动认领党建任务，每季度需在支委会上汇报分管领域党建工作落实情况 。</p>`;
+            }
+            // 显示弹窗
+            popup.style.display = 'flex';
+        }
+
+        // 关闭弹窗函数
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+
+        // 点击弹窗外部关闭弹窗
+        document.getElementById('term-popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup('term-popup');
+            }
+        });
+
+        // 搜索功能（模糊匹配）
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            const keyword = e.target.value.trim().toLowerCase();
+            if (!keyword) {
+                // 关键词为空，显示所有模块
+                document.querySelectorAll('.module-item').forEach(item => item.style.display = 'flex');
+                return;
+            }
+            // 模糊匹配模块名称和描述
+            document.querySelectorAll('.module-item').forEach(item => {
+                const name = item.querySelector('.module-name').textContent.toLowerCase();
+                const desc = item.querySelector('.module-desc').textContent.toLowerCase();
+                if (name.includes(keyword) || desc.includes(keyword)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
