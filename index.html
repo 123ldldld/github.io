@@ -44,6 +44,27 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E");
             background-size: cover;
         }
+        /* 后退按钮样式 - 修改部分 */
+        .back-btn {
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.2); /* 半透明白色背景增强区分度 */
+        }
+        .back-btn .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 6px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        .back-btn:active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
         /* 搜索框样式 */
         .search-box {
             margin: 15px;
@@ -318,9 +339,9 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- 顶部导航（带后退按钮容器） -->
     <div class="header">
-        <div class="header-logo"></div>
+        <div id="back-btn-container"></div>
         <div class="header-title">支部书记“码”上宝典</div>
         <div></div>
     </div>
@@ -336,7 +357,7 @@
         <!-- 板块入口列表 -->
         <div class="module-list" id="home-module-list">
             <!-- 通用指南模块 -->
-            <div class="module-item" data-target="general-guide-page">
+            <div class="module-item" data-target="general-guide-page" data-prev="home-page">
                 <div class="module-info">
                     <div class="module-icon icon1">
                         <svg viewBox="0 0 24 24" fill="#C62828">
@@ -352,7 +373,7 @@
             </div>
 
             <!-- 案例索引模块 -->
-            <div class="module-item" data-target="case-index-page">
+            <div class="module-item" data-target="case-index-page" data-prev="home-page">
                 <div class="module-info">
                     <div class="module-icon icon2">
                         <svg viewBox="0 0 24 24" fill="#1976D2">
@@ -368,7 +389,7 @@
             </div>
 
             <!-- 周期导航模块 -->
-            <div class="module-item" data-target="cycle-nav-page">
+            <div class="module-item" data-target="cycle-nav-page" data-prev="home-page">
                 <div class="module-info">
                     <div class="module-icon icon3">
                         <svg viewBox="0 0 24 24" fill="#388E3C">
@@ -384,7 +405,7 @@
             </div>
 
             <!-- 互动赋能模块 -->
-            <div class="module-item" data-target="interaction-page">
+            <div class="module-item" data-target="interaction-page" data-prev="home-page">
                 <div class="module-info">
                     <div class="module-icon icon4">
                         <svg viewBox="0 0 24 24" fill="#F57C00">
@@ -408,7 +429,7 @@
             <div class="detail-breadcrumb">首页 > 通用指南</div>
         </div>
         <div class="module-list" id="general-module-list">
-            <div class="module-item" data-target="org-construction-page">
+            <div class="module-item" data-target="org-construction-page" data-prev="general-guide-page">
                 <div class="module-info">
                     <div class="module-icon icon1">
                         <svg viewBox="0 0 24 24" fill="#C62828">
@@ -422,7 +443,7 @@
                 </div>
                 <div class="arrow-icon"></div>
             </div>
-            <div class="module-item" data-target="team-construction-page">
+            <div class="module-item" data-target="team-construction-page" data-prev="general-guide-page">
                 <div class="module-info">
                     <div class="module-icon icon1">
                         <svg viewBox="0 0 24 24" fill="#C62828">
@@ -446,7 +467,7 @@
             <div class="detail-breadcrumb">首页 > 案例索引</div>
         </div>
         <div class="module-list">
-            <div class="module-item">
+            <div class="module-item" data-prev="case-index-page">
                 <div class="module-info">
                     <div class="module-icon icon2">
                         <svg viewBox="0 0 24 24" fill="#1976D2">
@@ -460,7 +481,7 @@
                 </div>
                 <div class="arrow-icon"></div>
             </div>
-            <div class="module-item">
+            <div class="module-item" data-prev="case-index-page">
                 <div class="module-info">
                     <div class="module-icon icon2">
                         <svg viewBox="0 0 24 24" fill="#1976D2">
@@ -484,7 +505,7 @@
             <div class="detail-breadcrumb">首页 > 周期导航</div>
         </div>
         <div class="module-list">
-            <div class="module-item">
+            <div class="module-item" data-prev="cycle-nav-page">
                 <div class="module-info">
                     <div class="module-icon icon3">
                         <svg viewBox="0 0 24 24" fill="#388E3C">
@@ -498,7 +519,7 @@
                 </div>
                 <div class="arrow-icon"></div>
             </div>
-            <div class="module-item">
+            <div class="module-item" data-prev="cycle-nav-page">
                 <div class="module-info">
                     <div class="module-icon icon3">
                         <svg viewBox="0 0 24 24" fill="#388E3C">
@@ -522,7 +543,7 @@
             <div class="detail-breadcrumb">首页 > 互动赋能</div>
         </div>
         <div class="module-list">
-            <div class="module-item">
+            <div class="module-item" data-prev="interaction-page">
                 <div class="module-info">
                     <div class="module-icon icon4">
                         <svg viewBox="0 0 24 24" fill="#F57C00">
@@ -536,7 +557,7 @@
                 </div>
                 <div class="arrow-icon"></div>
             </div>
-            <div class="module-item">
+            <div class="module-item" data-prev="interaction-page">
                 <div class="module-info">
                     <div class="module-icon icon4">
                         <svg viewBox="0 0 24 24" fill="#F57C00">
@@ -723,14 +744,22 @@
     </div>
 
     <script>
+        // 全局页面历史记录栈
+        let pageHistory = ['home-page'];
+
         // 页面切换核心功能
         document.addEventListener('DOMContentLoaded', function() {
+            // 初始化后退按钮 - 修改部分
+            initBackButton();
+
             // 模块项点击切换页面
             const moduleItems = document.querySelectorAll('.module-item');
             moduleItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const targetId = this.getAttribute('data-target');
-                    if (targetId) {
+                    const prevId = this.getAttribute('data-prev');
+                    if (targetId && prevId) {
+                        pageHistory.push(targetId);
                         showPage(targetId);
                     }
                 });
@@ -741,6 +770,7 @@
             tabItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const targetId = this.getAttribute('data-tab');
+                    pageHistory = [targetId]; // 底部导航直接跳转，重置历史栈
                     showPage(targetId);
                     // 更新底部导航激活状态
                     tabItems.forEach(tab => tab.classList.remove('active'));
@@ -822,7 +852,34 @@
             });
         });
 
-        // 显示指定页面
+        // 初始化后退按钮 - 修改部分
+        function initBackButton() {
+            const backBtnContainer = document.getElementById('back-btn-container');
+            // 创建带文字的后退按钮
+            const backBtn = document.createElement('div');
+            backBtn.className = 'back-btn';
+            backBtn.id = 'back-btn';
+            backBtn.style.display = 'none'; // 首页默认隐藏
+            
+            // 添加图标和文字
+            backBtn.innerHTML = `
+                <div class="icon"></div>
+                <span>后退</span>
+            `;
+            
+            backBtnContainer.appendChild(backBtn);
+
+            // 后退按钮点击事件
+            backBtn.addEventListener('click', function() {
+                if (pageHistory.length > 1) {
+                    pageHistory.pop(); // 移除当前页
+                    const prevPageId = pageHistory[pageHistory.length - 1];
+                    showPage(prevPageId);
+                }
+            });
+        }
+
+        // 显示指定页面并控制后退按钮显示
         function showPage(pageId) {
             const allPages = document.querySelectorAll('.page-section');
             allPages.forEach(page => {
@@ -831,6 +888,11 @@
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 targetPage.classList.add('active');
+
+                // 控制后退按钮显示：首页隐藏，其他页面显示
+                const backBtn = document.getElementById('back-btn');
+                backBtn.style.display = pageId === 'home-page' ? 'none' : 'flex';
+
                 // 更新底部导航激活状态
                 const tabItems = document.querySelectorAll('.tab-item');
                 tabItems.forEach(tab => {
@@ -840,6 +902,7 @@
                         tab.classList.remove('active');
                     }
                 });
+
                 // 滚动到顶部
                 window.scrollTo(0, 0);
             }
