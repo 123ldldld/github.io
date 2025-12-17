@@ -20,6 +20,115 @@
             padding-top: 64px;
             padding-bottom: 60px;
         }
+        /* 登录页面样式 - 新增 */
+        #login-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #C62828 0%, #B71C1C 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 30px 25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .oil-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C62828'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .login-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #C62828;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .login-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #C62828;
+            margin: 10px auto 0;
+            border-radius: 3px;
+        }
+        .login-form-group {
+            margin-bottom: 20px;
+        }
+        .login-label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .login-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .login-input:focus {
+            border-color: #C62828;
+            box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.1);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #C62828;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        .login-btn:hover {
+            background-color: #B71C1C;
+        }
+        .login-btn:active {
+            background-color: #A00000;
+        }
+        .error-message {
+            color: #C62828;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+        .oil-pattern {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' fill='%23C62828'%3E%3Cpath d='M0 5 Q 25 0, 50 5 T 100 5' stroke='%23C62828' stroke-width='1' fill='none'/%3E%3Cpath d='M0 8 Q 25 3, 50 8 T 100 8' stroke='%23C62828' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            opacity: 0.3;
+        }
         /* 顶部导航栏 */
         .header {
             background-color: #C62828;
@@ -44,7 +153,7 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E");
             background-size: cover;
         }
-        /* 后退按钮样式 - 修改部分 */
+        /* 后退按钮样式 */
         .back-btn {
             display: flex;
             align-items: center;
@@ -53,7 +162,7 @@
             cursor: pointer;
             padding: 4px 8px;
             border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.2); /* 半透明白色背景增强区分度 */
+            background-color: rgba(255, 255, 255, 0.2);
         }
         .back-btn .icon {
             width: 20px;
@@ -339,6 +448,25 @@
     </style>
 </head>
 <body>
+    <!-- 新增登录页面 -->
+    <div id="login-page">
+        <div class="login-container">
+            <div class="oil-logo"></div>
+            <h2 class="login-title">石油党建 · 支部书记联盟</h2>
+            <div class="login-form-group">
+                <label class="login-label" for="username">账号</label>
+                <input type="text" id="username" class="login-input" placeholder="请输入账号">
+            </div>
+            <div class="login-form-group">
+                <label class="login-label" for="password">密码</label>
+                <input type="password" id="password" class="login-input" placeholder="请输入密码">
+            </div>
+            <button class="login-btn" id="login-btn">登录系统</button>
+            <div class="error-message" id="error-message">账号或密码错误，请重新输入</div>
+            <div class="oil-pattern"></div>
+        </div>
+    </div>
+
     <!-- 顶部导航（带后退按钮容器） -->
     <div class="header">
         <div id="back-btn-container"></div>
@@ -744,15 +872,76 @@
     </div>
 
     <script>
+        // 登录功能 - 新增
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginPage = document.getElementById('login-page');
+            const loginBtn = document.getElementById('login-btn');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('error-message');
+            
+            // 登录验证
+            loginBtn.addEventListener('click', function() {
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+                
+                // 验证账号密码（硬编码，实际项目建议后端验证）
+                if (username === 'tzykfgs' && password === 'zbsjlm') {
+                    loginPage.style.display = 'none'; // 隐藏登录页
+                } else {
+                    errorMessage.style.display = 'block';
+                    // 3秒后隐藏错误提示
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                }
+            });
+            
+            // 回车登录
+            usernameInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') loginBtn.click();
+            });
+            passwordInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') loginBtn.click();
+            });
+
+            // 原有功能初始化
+            initBackButton();
+            initModuleNavigation();
+            initTabNavigation();
+            initTermPopup();
+            initSearchFunction();
+        });
+
         // 全局页面历史记录栈
         let pageHistory = ['home-page'];
 
-        // 页面切换核心功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // 初始化后退按钮 - 修改部分
-            initBackButton();
+        // 初始化后退按钮
+        function initBackButton() {
+            const backBtnContainer = document.getElementById('back-btn-container');
+            const backBtn = document.createElement('div');
+            backBtn.className = 'back-btn';
+            backBtn.id = 'back-btn';
+            backBtn.style.display = 'none';
+            
+            backBtn.innerHTML = `
+                <div class="icon"></div>
+                <span>后退</span>
+            `;
+            
+            backBtnContainer.appendChild(backBtn);
+            
+            backBtn.addEventListener('click', function() {
+                if (pageHistory.length > 1) {
+                    pageHistory.pop();
+                    const prevPageId = pageHistory[pageHistory.length - 1];
+                    showPage(prevPageId);
+                }
+            });
+        }
 
-            // 模块项点击切换页面
+        // 模块导航初始化
+        function initModuleNavigation() {
             const moduleItems = document.querySelectorAll('.module-item');
             moduleItems.forEach(item => {
                 item.addEventListener('click', function() {
@@ -764,33 +953,36 @@
                     }
                 });
             });
+        }
 
-            // 底部导航点击切换页面
+        // 底部导航初始化
+        function initTabNavigation() {
             const tabItems = document.querySelectorAll('.tab-item');
             tabItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const targetId = this.getAttribute('data-tab');
-                    pageHistory = [targetId]; // 底部导航直接跳转，重置历史栈
+                    pageHistory = [targetId];
                     showPage(targetId);
-                    // 更新底部导航激活状态
                     tabItems.forEach(tab => tab.classList.remove('active'));
                     this.classList.add('active');
                 });
             });
+        }
 
-            // 名词解释点击显示弹窗
+        // 名词解释弹窗初始化
+        function initTermPopup() {
             const termItems = document.querySelectorAll('.term');
             const termPopup = document.getElementById('term-popup');
             const popupClose = document.getElementById('popup-close');
             const popupTermTitle = document.getElementById('popup-term-title');
             const popupTermContent = document.getElementById('popup-term-content');
-
+            
             termItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const termType = this.getAttribute('data-term');
                     let title = '';
                     let content = '';
-
+                    
                     if (termType === 'term1') {
                         title = '党建“第一责任人”';
                         content = `<p><strong>权威定义：</strong>依据《中国共产党支部工作条例（试行）》《党支部工作标准》，党支部书记作为支部党建工作的核心负责人，对支部党建质量、方向、落实负首要责任，是支部党建工作的“领头人” 。</p>
@@ -807,39 +999,37 @@
                         <p style="margin-top: 10px;"><strong>业务关联：</strong>例如分管生产的支委，在安排生产任务时，需同步部署“党员先锋岗”“党员责任区”创建工作；分管安全的支委，需在安全培训中加入党建引领安全的相关内容 。</p>
                         <p style="margin-top: 10px;"><strong>易错提醒：</strong>不可将党建职责推给书记一人，支委需主动认领党建任务，每季度需在支委会上汇报分管领域党建工作落实情况 。</p>`;
                     }
-
+                    
                     popupTermTitle.textContent = title;
                     popupTermContent.innerHTML = content;
                     termPopup.style.display = 'flex';
                 });
             });
-
-            // 关闭弹窗
+            
             popupClose.addEventListener('click', function() {
                 termPopup.style.display = 'none';
             });
-
-            // 点击弹窗外部关闭
+            
             termPopup.addEventListener('click', function(e) {
                 if (e.target === this) {
                     termPopup.style.display = 'none';
                 }
             });
+        }
 
-            // 搜索功能
+        // 搜索功能初始化
+        function initSearchFunction() {
             const searchInput = document.getElementById('search-input');
-            const homeModuleList = document.getElementById('home-module-list');
-            const generalModuleList = document.getElementById('general-module-list');
-
+            const allModuleItems = document.querySelectorAll('.module-item');
+            
             searchInput.addEventListener('input', function() {
                 const keyword = this.value.trim().toLowerCase();
-                const allModuleItems = document.querySelectorAll('.module-item');
-
+                
                 if (!keyword) {
                     allModuleItems.forEach(item => item.style.display = 'flex');
                     return;
                 }
-
+                
                 allModuleItems.forEach(item => {
                     const name = item.querySelector('.module-name').textContent.toLowerCase();
                     const desc = item.querySelector('.module-desc').textContent.toLowerCase();
@@ -850,36 +1040,9 @@
                     }
                 });
             });
-        });
-
-        // 初始化后退按钮 - 修改部分
-        function initBackButton() {
-            const backBtnContainer = document.getElementById('back-btn-container');
-            // 创建带文字的后退按钮
-            const backBtn = document.createElement('div');
-            backBtn.className = 'back-btn';
-            backBtn.id = 'back-btn';
-            backBtn.style.display = 'none'; // 首页默认隐藏
-            
-            // 添加图标和文字
-            backBtn.innerHTML = `
-                <div class="icon"></div>
-                <span>后退</span>
-            `;
-            
-            backBtnContainer.appendChild(backBtn);
-
-            // 后退按钮点击事件
-            backBtn.addEventListener('click', function() {
-                if (pageHistory.length > 1) {
-                    pageHistory.pop(); // 移除当前页
-                    const prevPageId = pageHistory[pageHistory.length - 1];
-                    showPage(prevPageId);
-                }
-            });
         }
 
-        // 显示指定页面并控制后退按钮显示
+        // 显示指定页面
         function showPage(pageId) {
             const allPages = document.querySelectorAll('.page-section');
             allPages.forEach(page => {
@@ -888,12 +1051,10 @@
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 targetPage.classList.add('active');
-
-                // 控制后退按钮显示：首页隐藏，其他页面显示
+                
                 const backBtn = document.getElementById('back-btn');
                 backBtn.style.display = pageId === 'home-page' ? 'none' : 'flex';
-
-                // 更新底部导航激活状态
+                
                 const tabItems = document.querySelectorAll('.tab-item');
                 tabItems.forEach(tab => {
                     if (tab.getAttribute('data-tab') === pageId) {
@@ -902,8 +1063,7 @@
                         tab.classList.remove('active');
                     }
                 });
-
-                // 滚动到顶部
+                
                 window.scrollTo(0, 0);
             }
         }
